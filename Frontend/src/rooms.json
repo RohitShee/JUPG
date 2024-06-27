@@ -1,0 +1,52 @@
+{
+    "rooms": [
+      {
+        "id": "1",
+        "houseName": "Basumati House",
+        "onlyFor": "Boys",
+        "description": "2bhk flat near jadavpur station have 2 bathroom and 1 kitchen 24 hours water and electric",
+        "address": "Garfa",
+        "walkingDistance" : "5",
+        "landmark" : "sadarhon pathagar",
+        "rent": "3000",
+        "availabeFor": "2",
+        "owner": {
+          "name": "abcd",
+          "contactPhone": "555-555-5555"
+        }
+      },
+      {
+        "id": "2",
+        "houseName": "LakePalace",
+        "onlyFor": "Boys/Girls",
+        "description": "2bhk flat near Santoshpur lake have 2 bathroom and 1 kitchen 24 hours water and electric",
+        "address": "santoshpur",
+        "walkingDistance" : "15",
+        "landmark" : "",
+        "rent": "5000",
+        "availabeFor": "2",
+        "owner": {
+          "name": "xyzw",
+          "contactPhone": "555-555-5555"
+        }
+      },
+      {
+        "id": "3",
+        "houseName": "sen bhavan",
+        "onlyFor": "Girls",
+        "description": "2bhk flat near bijoygarh kalimandir have 2 bathroom and 1 kitchen 24 hours water and electric",
+        "address": "bijoygarh",
+        "walkingDistance" : "15",
+        "landmark" : "bijoygarh kalimandir",
+        "rent": "2000",
+        "availabeFor": "4",
+        "owner": {
+          "name": "pqr",
+          "contactPhone": "555-555-5555"
+        }
+        
+      }
+      
+     
+    ]
+  }
