@@ -18,7 +18,9 @@ const EditRoomPage = () => {
     const [contactNo, setContactNo] = useState('');
     const [extraContactNo, setExtraContactNo] = useState('');
     const [rules, setRulse] = useState('');
+    const [ownerId,setOwnerId] = useState('');
     const navigate = useNavigate();
+
       useEffect(()=>{
         const fetchRoom =async()=>{
           try{
@@ -35,6 +37,7 @@ const EditRoomPage = () => {
             setContactNo(res.data.contactNo)
             setExtraContactNo(res.data.extraContactNo)
             setRulse(res.data.rules)
+            setOwnerId(res.data.ownerId)
             })
            
           }catch(error){
@@ -47,15 +50,12 @@ const EditRoomPage = () => {
      },[]);
 
 
-    
-
-  
     const submitForm = async (e) => {
       e.preventDefault();
       try {
-        await axios.patch(`api/user/edit-room/${id}`,{houseName,type,location,description,rent,walkingDistance,landmark,owner,contactNo,extraContactNo,rules})
+        await axios.patch(`/api/user/edit/${id}`,{houseName,type,location,description,rent,walkingDistance,landmark,owner,contactNo,extraContactNo,rules})
         .then(()=>{
-          return navigate('/user')
+          return navigate(-1)
         }   
         )
         .catch((error)=> console.error(error))

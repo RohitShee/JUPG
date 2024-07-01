@@ -13,5 +13,5 @@ router.route("/rooms").get(verifyJWT,getRooms)
 router.route("/someRooms").get(getSomeRooms)
 router.route("/rooms/:id").get(getRoom)
 router.route("/:username").get(verifyJWT,getUserRoom)
-router.route("/edit-room/:id").patch(updateRooms)
+router.route("/edit/:id").patch(updateRooms)
 export default router

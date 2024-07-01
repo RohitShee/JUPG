@@ -126,7 +126,7 @@ const getSomeRooms = asyncHandler(async(req,res)=>{
 const getRoom = asyncHandler(async(req,res)=>{
     const {id} = req.params
     //console.log(id)
-    const data = await Room.findById(id).select("-ownerId")
+    const data = await Room.findById(id)
     res.status(200)
     .json(data)
 })
@@ -143,22 +143,18 @@ const getUserRoom = asyncHandler(async(req,res)=>{
 const updateRooms = asyncHandler(async(req,res)=>{
     const {id} = req.params
     console.log('here')
-    console.log({id})
+    //console.log({id})
     const {houseName,type,location,description,rent,walkingDistance,landmark,owner,contactNo,extraContactNo,rules} = req.body
-    const room = await Room.findById({id})
-    room.houseName =houseName
-    room.type = type
-    room.location = location
-    room.description = description
-    room.rent = rent
-    room.walkingDistance = walkingDistance
-    room.landmark = landmark
-    room.owner = owner
-    room.contactNo = contactNo
-    room.extraContactNo =extraContactNo
-    room.rules = rules
+    const room = await Room.findByIdAndUpdate(id,
+        {
+            $set:{
+                houseName,type,location,description,rent,walkingDistance,landmark,owner,contactNo,extraContactNo,rules
+            }
+        },
+        {new : true}
+    ).select("-owner")
     return res.status(201).json(
-        new ApiResponse(200,createdRoom,"Room Details updated successfully")
+        new ApiResponse(200,room,"Room Details updated successfully")
     )
 })
 export {signUpUser,loginUser,addRoom,getRooms,getSomeRooms,getRoom,getUserRoom,updateRooms}

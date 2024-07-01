@@ -23,10 +23,7 @@ function App() {
           <Route path='/sign-up' element={<SignInPage />} />
           <Route path='/:username' element={<UserPage/>}/>
           <Route path='/edit-room/:id' element={<EditRoomPage />}/>
-          {/*<Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
-          <Route path='/edit-job/:id' element={<EditJobPage editJobSubmit={updateJob}/>} loader={jobLoader}  />
-         
-          <Route path='*' element={<NotFoundPage/>}/>*/}
+          
       </Route>
   )
   );
