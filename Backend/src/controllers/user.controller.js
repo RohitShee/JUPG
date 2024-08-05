@@ -85,6 +85,24 @@ const loginUser = asyncHandler(async(req,res)=>{
     ))
 })
 
+const logoutUser = asyncHandler(async(req,res)=>{
+    await User.findByIdAndUpdate(req.user._id,{
+         $set :{
+             refreshToken : undefined
+         }, 
+     },{
+         new : true
+     })
+     const options = {
+         httpOnly : true,
+         secure : true
+     }
+     return res.status(200)
+     .clearCookie("accessToken",options)
+     .clearCookie("refreshToken",options)
+     .json(new ApiResponse(200, {}, "user logged out"))
+})
+
 const addRoom = asyncHandler(async(req,res) =>{
     const {houseName,type,location,description,rent,walkingDistance,landmark,owner,contactNo,extraContactNo,rules} = req.body
     //console.log(type)
@@ -142,7 +160,7 @@ const getUserRoom = asyncHandler(async(req,res)=>{
 })
 const updateRooms = asyncHandler(async(req,res)=>{
     const {id} = req.params
-    console.log('here')
+   // console.log('here')
     //console.log({id})
     const {houseName,type,location,description,rent,walkingDistance,landmark,owner,contactNo,extraContactNo,rules} = req.body
     const room = await Room.findByIdAndUpdate(id,
@@ -157,4 +175,11 @@ const updateRooms = asyncHandler(async(req,res)=>{
         new ApiResponse(200,room,"Room Details updated successfully")
     )
 })
-export {signUpUser,loginUser,addRoom,getRooms,getSomeRooms,getRoom,getUserRoom,updateRooms}
+const deleteRooms = asyncHandler(async(req,res)=>{
+        const {id} = req.params
+        await Room.findByIdAndDelete(id)
+        return res.status(201).json(
+            new ApiResponse(200,"Room Details updated successfully")
+        )
+})
+export {signUpUser,loginUser,addRoom,getRooms,getSomeRooms,getRoom,getUserRoom,updateRooms,deleteRooms,logoutUser}

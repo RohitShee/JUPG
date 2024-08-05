@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import { useParams,Link } from 'react-router-dom'
 import Room from '../components/Room'
 import axios from 'axios'
+import Navbar from '../components/Navbar'
 
 const UserPage = () => {
     const {username} = useParams()
@@ -28,6 +29,7 @@ const UserPage = () => {
   return (
     <>
     <section>
+      <Navbar />
     <div className='container m-auto py-10 px-6'>
 
         <div className=' bg-indigo-50 text-5xl text-indigo-500 p-6 mb-4'>
@@ -42,7 +44,7 @@ const UserPage = () => {
         </p>
         <Link
             to={'/rooms'}
-            className=' bg-black hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm'
+            className=' inline-block bg-black hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center'
           >
             view All PGs
           </Link> 

@@ -2,8 +2,21 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import { FaMapMarker } from 'react-icons/fa';
+import axios from 'axios';
 
 const Room = ({room,isUser =false}) => {
+
+  const onDeleteClick = async (id) => {
+    try {
+      const confirm =window.confirm('are you sure you want to delete this Room ? ')
+    if(!confirm) return;
+      await axios.delete(`/api/user/delete/${id}`)
+      .then(()=>window.location.reload())
+      .catch((error)=> console.error(error))
+  } catch (error) {
+      console.error('Error signing in', error);
+  }
+  };
     const [showFullDescription,setShowFullDescription]= useState(false);
 
     let description=room.description;
@@ -53,7 +66,7 @@ const Room = ({room,isUser =false}) => {
                 Edit PG
               </Link>
               <button
-                /*onClick={() => onDeleteClick(room._id)}*/
+                onClick={() => onDeleteClick(room._id)}
                 className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'
               >
                 Delete PG

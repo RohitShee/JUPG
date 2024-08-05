@@ -1,25 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-import { useNavigate,useParams } from 'react-router-dom';
-import axios from 'axios'
 
-const Navbar = () => {
-
-  const navigate = useNavigate();
-  const data = useParams()
-  console.log(data)
-  const logoutUser = async () => {
-    try {
-      const confirm =window.confirm('are you sure you want to logout ? ')
-    if(!confirm) return;
-      await axios.post(`/api/user/logout`)
-      .then(()=> navigate('/'))
-      .catch((error)=> console.error(error))
-  } catch (error) {
-      console.error('Error signing in', error);
-  }
-  };
-
+const HomePageNav = () => {
   const linkClass = ({ isActive  }) =>
   isActive
     ? 'bg-black text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'
@@ -37,18 +19,13 @@ const Navbar = () => {
            </NavLink> 
             <div className='md:ml-auto'>
               <div className='flex space-x-2'>
-               <NavLink to={`/${data.username}`} className={linkClass}>
-                  User
+               
+               <NavLink to='/' className={linkClass}>
+                  Home
                 </NavLink>
-                <NavLink to='/rooms' className={linkClass}>
-                  PGS
+                <NavLink to='/log-in' className={linkClass}>
+                  log in
                 </NavLink>
-                <NavLink to='/add-room' className={linkClass}>
-                  Add PGS
-                </NavLink>
-                <button  onClick={() => logoutUser()} className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2'>
-                  log out
-                </button>
               </div>
             </div>
           </div>
@@ -58,4 +35,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default HomePageNav
