@@ -83,6 +83,7 @@ const RoomPage = () => {
               <p className='my-2 bg-indigo-100 p-2 font-bold'>
                 {room.extraContactNo}
               </p>
+              <h3 className='text-xl'>Rules</h3>
               <p className='my-2'>{room.rules}</p>
             </div>
             
@@ -96,19 +97,6 @@ const RoomPage = () => {
 
 export default RoomPage
 
-
-
-
-
-
-
- 
-
-{/*const roomLoader =async({params}) => {
-    const res = await fetch(`/api/rooms/${params.id}`)
-    const data = await res.json()
-    return data;
-}*/}
 
 
 

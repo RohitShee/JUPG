@@ -1,13 +1,13 @@
-import React from 'react'
+import { useContext} from 'react'
 import {NavLink} from 'react-router-dom'
-import { useNavigate,useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import userContext from '../context/UserContext'
 
 const Navbar = () => {
+  const navigate = useNavigate()
+  const {user} = useContext(userContext) 
 
-  const navigate = useNavigate();
-  const data = useParams()
-  console.log(data)
   const logoutUser = async () => {
     try {
       const confirm =window.confirm('are you sure you want to logout ? ')
@@ -37,7 +37,7 @@ const Navbar = () => {
            </NavLink> 
             <div className='md:ml-auto'>
               <div className='flex space-x-2'>
-               <NavLink to={`/${data.username}`} className={linkClass}>
+               <NavLink to={`/${user.username}`} className={linkClass}>
                   User
                 </NavLink>
                 <NavLink to='/rooms' className={linkClass}>

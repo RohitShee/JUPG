@@ -1,20 +1,23 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import { Link ,useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer,toast } from 'react-toastify';
+import userContext from '../context/UserContext';
 
 const LoginPage = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const {setUser} = useContext(userContext)
   const navigate = useNavigate();
   const submitForm = async (e) => {
     e.preventDefault();
     try {
       await axios.post('api/user/login',{username,password})
       .then(()=>{
+        setUser({username,password})
         return navigate(`/${username}`)
       }   
       )
